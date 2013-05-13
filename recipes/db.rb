@@ -20,9 +20,9 @@ template node['mysql']['grants_path'] do
   source 'app_grants.sql.erb' 
   action :create
   variables({
-    :database => node['database']['mysql']['host'],
-    :username => node['database']['mysql']['username'], 
-    :password => node['database']['mysql']['password']
+    :database => db_attrs['db_name'],
+    :username => db_attrs['username'],
+    :password => db_attrs['password']
   })
 end
 
