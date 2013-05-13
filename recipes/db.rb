@@ -26,7 +26,7 @@ template node['mysql']['grants_path'] do
   })
 end
 
-mysql_database_user db_attrs['db_name'] do
+mysql_database_user db_attrs['username'] do
   connection node['database']['mysql']
   password db_attrs['username']
   action :create

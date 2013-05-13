@@ -42,3 +42,4 @@ default['java_demo']['db_attrs'] = {
 
 # directory that the war files get deployed to
 default['java_demo']['app_dir'] = '/tmp/releases'
+default['java_demo']['repo_src'] = '/vagrant/dbapp.war'
