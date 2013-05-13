@@ -28,7 +28,7 @@ end
 
 mysql_database_user db_attrs['username'] do
   connection node['database']['mysql']
-  password db_attrs['username']
+  password db_attrs['password']
   action :create
 end
 
