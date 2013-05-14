@@ -21,7 +21,6 @@ override['tomcat']['context_dir'] = "#{tomcat['config_dir']}/Catalina/localhost"
 override['tomcat']['webapp_dir'] = '/var/lib/tomcat6/webapps'
 
 # java_demo attributes
-
 default['database']['mysql'] = {
   'host'     => 'localhost',
   'database' => 'dbapp_production',
@@ -42,4 +41,5 @@ default['java_demo']['db_attrs'] = {
 
 # directory that the war files get deployed to
 default['java_demo']['app_dir'] = '/tmp/releases'
+# artifact location
 default['java_demo']['repo_src'] = '/vagrant/dbapp.war'
