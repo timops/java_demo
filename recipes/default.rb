@@ -18,9 +18,10 @@ db_attrs = node['java_demo']['db_attrs']
 
 application db_attrs['app_name'] do
   # where do we get the file from?  can also change this to a http URL (jenkins, TODO)
-  scm_provider Chef::Provider::File::Deploy
+  scm_provider Chef::Provider::RemoteFile::Deploy
   repository node['java_demo']['repo_src']
   path node['java_demo']['app_dir']
+  owner node['tomcat']['user']
 
   java_webapp do
     #context_template 'context.xml.erb'

@@ -19,6 +19,7 @@ override['mysql']['conf_dir'] = '/etc/mysql'
 override['tomcat']['config_dir'] = '/etc/tomcat6'
 override['tomcat']['context_dir'] = "#{tomcat['config_dir']}/Catalina/localhost"
 override['tomcat']['webapp_dir'] = '/var/lib/tomcat6/webapps'
+override['tomcat']['user'] = 'tomcat6'
 
 # java_demo attributes
 default['database']['mysql'] = {
@@ -39,7 +40,9 @@ default['java_demo']['db_attrs'] = {
   'port'     => 3306
 }
 
+default['java_demo']['artifact_repo'] = 'http://33.33.33.10/artifacts'
+
 # directory that the war files get deployed to
 default['java_demo']['app_dir'] = '/tmp/releases'
 # artifact location
-default['java_demo']['repo_src'] = '/vagrant/dbapp.war'
+default['java_demo']['repo_src'] = "#{default['java_demo']['artifact_repo']}/dbapp-0.0.1-SNAPSHOT.war"
