@@ -56,6 +56,6 @@ default['java_demo']['repo_src'] = "#{default['java_demo']['artifact_repo']}/dba
 
 # s3 attrs
 override['s3_file']['bucket'] = 'tgopc'
-override['s3_file']['remote_path'] = '/dbapp-0.0.1-SNAPSHOT.war'
+override['s3_file']['remote_path'] = '/dbapp.war'
 override['s3_file']['aws_access_key_id'] = 'AKIAJWNKCT25JSBQWWSA'
 override['s3_file']['aws_secret_access_key'] = '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'

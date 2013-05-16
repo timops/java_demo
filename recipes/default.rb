@@ -17,7 +17,7 @@ include_recipe 'java_demo::db'
 db_attrs = node['java_demo']['db_attrs'] 
 
 # retrieve artifact from s3
-if attribute?('ec2')
+if node.has_key?('ec2')
   s3_file File.join(node['java_demo']['artifact_repo'], "dbapp-0.0.1-SNAPSHOT.war") do
     remote_path node['s3_file']['remote_path']
     bucket node['s3_file']['bucket']
