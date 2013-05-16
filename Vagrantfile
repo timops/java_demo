@@ -66,7 +66,10 @@ Vagrant.configure("2") do |config|
   # Enabling the Berkshelf plugin. To enable this globally, add this configuration
   # option to your ~/.vagrant.d/Vagrantfile file
   if ENV['CHEF_ENV'].nil?
+    puts 'Running outside of CI pipeline, enabling berkshelf.'
     config.berkshelf.enabled = true
+  else
+    config.berkshelf.enabled = false
   end
 
   # An array of symbols representing groups of cookbook described in the Vagrantfile
