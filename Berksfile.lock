@@ -1,10 +1,6 @@
 {
   "sha": "6ef716553a56267bb3eb743ece483db8aa94cecb",
   "sources": {
-    "java_demo": {
-      "locked_version": "0.1.0",
-      "constraint": "= 0.1.0"
-    },
     "apt": {
       "locked_version": "1.9.2",
       "constraint": "~> 1.9.2"
