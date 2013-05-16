@@ -1,6 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+new_env = ENV['CHEF_ENV']
+new_env ||= 'dev'
+
+
 Vagrant.configure("2") do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -61,7 +65,9 @@ Vagrant.configure("2") do |config|
 
   # Enabling the Berkshelf plugin. To enable this globally, add this configuration
   # option to your ~/.vagrant.d/Vagrantfile file
-  config.berkshelf.enabled = true
+  if ENV['CHEF_ENV'].nil?
+    config.berkshelf.enabled = true
+  end
 
   # An array of symbols representing groups of cookbook described in the Vagrantfile
   # to exclusively install and copy to Vagrant's shelf.
@@ -71,7 +77,7 @@ Vagrant.configure("2") do |config|
   # to skip installing and copying to Vagrant's shelf.
   # config.berkshelf.except = []
 
-  config.vm.provision :chef_solo do |chef|
+  config.vm.provision :chef_client do |chef|
     chef.json = {
       :mysql => {
         :server_root_password => 'rootpass',
@@ -79,6 +85,10 @@ Vagrant.configure("2") do |config|
         :server_repl_password => 'replpass'
       }
     }
+    chef.environment = new_env
+    chef.chef_server_url = 'https://api.opscode.com/organizations/persuse'
+    chef.validation_key_path = '/Users/timgreen/.chef/persuse-validator.pem'
+    chef.validation_client_name = 'persuse-validator'
 
     chef.run_list = [
         "recipe[apt]",
