@@ -16,12 +16,15 @@ include_recipe 'java_demo::db'
 
 db_attrs = node['java_demo']['db_attrs'] 
 
-s3_file File.join(node['java_demo']['artifact_repo'], "dbapp-0.0.1-SNAPSHOT.war") do
-  remote_path node['s3_file']['remote_path']
-  bucket node['s3_file']['bucket']
-  aws_access_key_id node['s3_file']['aws_access_key_id']
-  aws_secret_access_key node['s3_file']['aws_secret_access_key']
-  action :create
+# retrieve artifact from s3
+if attribute?('ec2')
+  s3_file File.join(node['java_demo']['artifact_repo'], "dbapp-0.0.1-SNAPSHOT.war") do
+    remote_path node['s3_file']['remote_path']
+    bucket node['s3_file']['bucket']
+    aws_access_key_id node['s3_file']['aws_access_key_id']
+    aws_secret_access_key node['s3_file']['aws_secret_access_key']
+    action :create
+  end
 end
 
 application db_attrs['app_name'] do
