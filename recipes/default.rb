@@ -16,9 +16,17 @@ include_recipe 'java_demo::db'
 
 db_attrs = node['java_demo']['db_attrs'] 
 
+s3_file File.join(node['java_demo']['artifact_repo'], "dbapp-0.0.1-SNAPSHOT.war") do
+  remote_path node['s3_file']['remote_path']
+  bucket node['s3_file']['bucket']
+  aws_access_key_id node['s3_file']['aws_access_key_id']
+  aws_secret_access_key node['s3_file']['aws_secret_access_key']
+  action :create
+end
+
 application db_attrs['app_name'] do
   # where do we get the file from?  can also change this to a http URL (jenkins, TODO)
-  scm_provider Chef::Provider::RemoteFile::Deploy
+  scm_provider node['java_demo']['scm_provider']
   repository node['java_demo']['repo_src']
   path node['java_demo']['app_dir']
   owner node['tomcat']['user']
