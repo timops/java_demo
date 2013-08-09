@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 describe 'java_demo::default' do
-  chef_run = mChefSpec::ChefRunner.new(log_level: :error, cookbook_path: COOKBOOK_PATH, platform: 'ubuntu', version: '12.04') do |node|
+  chef_run = ChefSpec::ChefRunner.new(log_level: :error, cookbook_path: COOKBOOK_PATH, platform: 'ubuntu', version: '12.04') do |node|
     node.set['mysql']['server_debian_password'] = 'password'
     node.set['mysql']['server_root_password'] = 'password'
     node.set['mysql']['server_repl_password'] = 'password'
